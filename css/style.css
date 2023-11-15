@@ -7,6 +7,10 @@
     --spotify-white: #ffffff;
     --spotify-grey: #b3b3b3;
     --spotify-darkGrey: #222222;
+
+    --global-text-color: var(--spotify-white);
+    --global-background-color: var(--spotify-black);
+    --global-shadow-color: var(--spotify-darkGrey);
 }
 
 /* reset */
@@ -27,11 +31,19 @@ svg {
 
 /* global page styles */
 
-html {}
+html {
+    color: var(--global-text-color);
+    font-family: 'Manrope', sans-serif;
+}
 
 /* center everything */
 
-body {}
+body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background-color: var(--global-background-color);
+}
 
 /*
     Object: Button reset
@@ -65,10 +77,96 @@ body {}
 /*
     Toggle button
 */
+.icon--add {
+    display: inline-block;
+    animation: rotate-out 0.3s ease-in-out forwards;
+}
+
+.icon--check {
+    display: none;
+}
+
+.added .icon--check {
+    display: inline-block;
+    fill: var(--spotify-green);
+    animation: rotate-in 0.3s ease-in-out forwards;
+}
+
+.added .icon--add {
+    display: none;
+}
+
+@keyframes rotate-in {
+    from {
+        transform: rotate(90deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes rotate-out {
+    from {
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(90deg);
+        opacity: 1;
+    }
+}
+
 
 /*
     Album
 */
+.album {
+    max-width: 25rem;
+    background-color: var(--global-shadow-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.album__img {
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.album__header {
+    display: grid;
+    grid-template-columns: 1fr 2rem;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+}
+
+.album__title {
+    font-size: 1rem;
+    font-weight: 600;
+    grid-column: 1 / 2;
+}
+
+.album__artist {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--spotify-grey);
+    grid-column: 1 / 2;
+}
+
+.album__action {
+    fill: currentColor;
+    stroke: currentColor;
+    /* grid-column: 2/3;
+    grid-row: 1/3; */
+    display: grid;
+    place-items: center;
+}
+
+.toggle {
+    grid-area: 1 / 2 / span 2 / span 1;
+}
+
 
 /*
     Utitlities
